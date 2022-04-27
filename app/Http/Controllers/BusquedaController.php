@@ -13,11 +13,15 @@ class BusquedaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $result = exec("C:/Users/Victor/AppData/Local/Microsoft/WindowsApps/python3.9.exe c:/Users/Victor/LARAVEL/PC3-Laravel/holamundo.py");
-        #$prueba = "hola mundo";
-        return $result;
+        $ciudad = $request->query('ciudad');
+        $result = exec("C:/Users/Victor/AppData/Local/Microsoft/WindowsApps/python3.9.exe c:/Users/Victor/LARAVEL/PC3-Laravel/holamundo.py " . $ciudad);
+        $json = json_decode($result);
+        #$json = '{"foo-bar": 12345}';
+        #$obj = json_decode($json);
+        #return $json;
+        return $json;
     }
 
     /**
